@@ -1,15 +1,28 @@
-function makeArray(firstArray, secondArray, maxLength) {
-  const combined = firstArray.concat(secondArray);
-  if (combined.length > maxLength) {
-    return combined.slice(0, maxLength);
+class Storage {
+  #items;
+
+  constructor(items) {
+    this.#items = items;
   }
-  return combined;
+
+  getItems() {
+    return this.#items;
+  }
+
+  addItem(newItem) {
+    this.#items.push(newItem);
+  }
+
+  removeItem(itemToRemove) {
+    this.#items = this.#items.filter(item => item !== itemToRemove);
+  }
 }
 
-console.log(makeArray(["Mango", "Poly"], ["Ajax", "Chelsea"], 3)); 
-console.log(makeArray(["Mango", "Poly", "Houston"], ["Ajax", "Chelsea"], 4)); 
-console.log(makeArray(["Mango"], ["Ajax", "Chelsea", "Poly", "Houston"], 3));
-console.log(makeArray(["Earth", "Jupiter"], ["Neptune", "Uranus"], 2)); 
-console.log(makeArray(["Earth", "Jupiter"], ["Neptune", "Uranus"], 4)); 
-console.log(makeArray(["Earth", "Jupiter"], ["Neptune", "Uranus", "Venus"], 0));
-
+const storage = new Storage(["Nanitoids", "Prolonger", "Antigravitator"]);
+console.log(storage.getItems()); 
+storage.addItem("Droid");
+console.log(storage.getItems());  
+storage.removeItem("Prolonger");
+console.log(storage.getItems()); 
+storage.removeItem("Scaner");
+console.log(storage.getItems()); 
